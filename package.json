@@ -1,0 +1,23 @@
+{
+  "name": "URL-Short",
+  "version": "0.0.1",
+  "description": "A URL Shortener written in Node.js using a SQLite3 backend.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WRMilling/URL-Short"
+  },
+  "keywords": [
+    "URL",
+    "Shortener"
+  ],
+  "author": "Winston R. Milling",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WRMilling/URL-Short/issues"
+  },
+  "homepage": "https://github.com/WRMilling/URL-Short"
+}
