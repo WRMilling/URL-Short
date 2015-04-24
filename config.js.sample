@@ -1,0 +1,6 @@
+var config = {
+    port: 8080,
+    databasePath: 'db.sql'
+}
+
+module.exports = config;

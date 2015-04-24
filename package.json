@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/WRMilling/URL-Short/issues"
   },
-  "homepage": "https://github.com/WRMilling/URL-Short"
+  "homepage": "https://github.com/WRMilling/URL-Short",
+  "dependencies": {
+    "sqlite3": "^3.0.5"
+  }
 }
