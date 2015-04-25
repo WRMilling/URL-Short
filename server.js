@@ -18,6 +18,7 @@ if (!dbe) {
 
 // Load the database and webserver modules.
 var http = require("http"),
+    urlp = require("url"),
     crypto = require('crypto'),
     md5 = crypto.createHash('md5'),
     sqlite3 = require("sqlite3"),
@@ -25,13 +26,24 @@ var http = require("http"),
 
 if (!dbe) {
     database.serialize(function() {
-        database.run("CREATE TABLE urls (hash TEXT PRIMARY KEY, url TEXT");
+        database.run("CREATE TABLE urls (hash TEXT, url TEXT)", function(err) {
+            if (err) {
+                console.log("There was an error in creating the database.");
+                console.log(err);
+            } else {
+                // Sample row to test databse
+                database.run("INSERT INTO urls VALUES ('w4cbe', 'http://w4c.be')");
+            }
+        });
     });
 }
 
 // Handle all requests to the node.js server
 var handleRequest = function(request, response) {
     //TODO: Handle the http requests
+    getUrl(urlp.parse(request.url).pathname, function(url){
+        redirect(response, url);
+    });
 };
 
 // Redirects to the given URL
@@ -39,15 +51,16 @@ var redirect = function(response, url) {
     response.writeHead(302, {
         'Location': url
     });
+    response.end();
 };
 
 // Grab the URL from the SQLite database
 var getUrl = function(hash, callback) {
-    database.get('SELECT url FROM urls WHERE hash = $hash LIMIT 1', {$hash: hash}, function(err, row){
+    database.get('SELECT url FROM urls WHERE hash = $hash LIMIT 1', {$hash: hash.slice(1)}, function(err, row){
         if (err) {
             console.log("Error while inserting to database: " + err);
         } else if (row !== undefined) {
-            callback(row);
+            callback(row.url);
         } else {
             //TODO: Nothing Found Logic
         }
