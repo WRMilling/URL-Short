@@ -1,6 +1,8 @@
 var config = {
+    baseUrl: "http://example.com",
     port: 8080,
-    databasePath: 'db.sql'
+    databasePath: 'db.sql',
+    hasLength: 5
 }
 
 module.exports = config;
