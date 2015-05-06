@@ -15,4 +15,4 @@ Please see the LICENSE file included with this repository for full details.
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Winston Milling
+Copyright (c) 2015 Winston R. Milling
